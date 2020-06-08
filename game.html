@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jogo</title>
+    <link rel="stylesheet" href="./bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+    <link rel="stylesheet" type="text/css" href="./game.css" />
+  </head>
+  <body>
+    <header class="bg-primary fixed-top">
+      <nav class="container navbar navbar-expand-md navbar-dark">
+        <a class="navbar-brand" href="/index.html">
+          <img id="logo" src="./logo.jpg" alt="Logotipo do website" />
+          <span id="page-name">WebDEvs</span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#"
+                >Home <span class="sr-only">(current)</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./galery.html">galeria</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./game.html">jogo</a>
+            </li>
+
+            <li class="nav-item">
+              <a
+                class="nav-link disabled"
+                href="#"
+                tabindex="-1"
+                aria-disabled="true"
+                >Disabled</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <div class="container main">
+      <h1 class="mt-5 text-center">Bate na toupeira!</h1>
+      <button id="start" class="btn btn-primary" onclick="start()">
+        Começar!
+      </button>
+      <div id="scoreboard" class="d-none">
+        <strong>Score:</strong>
+        <span id="score">0</span>
+        <div class="float-right">
+          <strong>Timer:</strong>
+          <span id="timer">0</span>
+        </div>
+      </div>
+      <div id="game" class="border border-primary mx-auto mt-3 mb-5">
+        <div id="mole" onclick="whack()"></div>
+      </div>
+    </div>
+    <footer class="footer mt-auto py-3 bg-dark text-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-4">
+            <span class="texto-rodape">
+              Endereço:<br />
+              Beco das Laranjeiras, n8 jkhkja hsdkjh akshd kahsdkj akjshd kjahs
+              dkjha sdkjh kjh kjha skdjh akjshd kjash dkjahs dkjha skjdh aksjhd
+              kajsh dkajdh <br />
+              3020-522 Serra<br />
+              <a>Larçã</a>
+            </span>
+          </div>
+          <div class="col-6 col-sm-2 offset-sm-4 links">
+            <a href="#">link asd 1</a>
+            <a href="#">linkasd asd asd as 2</a>
+            <a href="#">linkasd as d 3</a>
+          </div>
+          <div class="col-6 col-sm-2 links">
+            <a href="#">linkasd as d1</a>
+            <a href="#">link asd as d2</a>
+            <a class="destaque" href="#">link 3</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      var moleEl = document.getElementById('mole');
+      var scoreEl = document.getElementById('score');
+      var timerEl = document.getElementById('timer');
+      var startEl = document.getElementById('start');
+      var scoreboardEl = document.getElementById('scoreboard');
+
+      var score = 0;
+      var timer = 10;
+      var interval;
+
+      moleEl.hidden = true;
+
+      var state = 'stopped'; // 'started'
+
+      function whack() {
+        score = score + 1;
+
+        var x = Math.random() * 550;
+        var y = Math.random() * 550;
+
+        console.log('x: ' + x + ' y: ' + y);
+        console.log('score: ' + score);
+
+        moleEl.style.left = x + 'px';
+        moleEl.style.top = y + 'px';
+
+        scoreEl.textContent = score;
+      }
+
+      function start() {
+        timer = 60;
+        interval = setInterval(timerStep, 1000);
+
+        startEl.classList.add('d-none');
+        scoreboardEl.classList.remove('d-none');
+
+        var x = Math.random() * 550;
+        var y = Math.random() * 550;
+        moleEl.style.left = x + 'px';
+        moleEl.style.top = y + 'px';
+
+        moleEl.hidden = false;
+      }
+
+      function stop() {
+        // parar o temporizador
+        clearInterval(interval);
+
+        startEl.classList.remove('d-none');
+        scoreboardEl.classList.add('d-none');
+        moleEl.hidden = true;
+      }
+
+      function timerStep() {
+        timer = timer - 1;
+        console.log('timer: ' + timer);
+        timerEl.textContent = timer;
+
+        if (timer == 0) {
+          stop();
+        }
+      }
+    </script>
+  </body>
+</html>

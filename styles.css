@@ -1,0 +1,28 @@
+/* body {
+  background: #f0f0f0;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  font-family: sans-serif;
+  color: #444;
+} */
+
+/* logotipo do */
+#logo {
+  width: 40px;
+  height: 40px;
+}
+
+.container.main {
+  padding-top: 66px;
+}
+
+#author-date > address {
+  display: inline;
+}
+
+.links > a {
+  display: block;
+}

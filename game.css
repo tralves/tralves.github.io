@@ -1,0 +1,17 @@
+#game {
+  height: 600px;
+  width: 600px;
+}
+
+#mole {
+  background-image: url('./mole.png');
+  background-size: contain;
+  width: 50px;
+  height: 50px;
+  position: relative;
+  transition: all 0.2s ease 0s;
+  /* transition: top, left;
+  transition-duration: 0.2s;
+  transition-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+  transition-delay: 0s; */
+}
